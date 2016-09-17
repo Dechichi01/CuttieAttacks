@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour {
     public Sprite UI_image;
     public int weaponNum;
     public float yPlayerRot = 0;
+    [SerializeField]
     protected float damage = 1f;
     protected Transform owner;
 

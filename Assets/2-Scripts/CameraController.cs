@@ -31,14 +31,15 @@ public class CameraController : MonoBehaviour
         mapRightEdge = mapGen.transform.position + Vector3.right * mapGen.map.mapSize.x * 0.440f;
         mapLeftEdge = mapGen.transform.position - Vector3.right * mapGen.map.mapSize.x * 0.45f;
 
-        if (playerT != null)
-        {
-            hasTarget = true;
-            targetLivingEntity = playerT.GetComponent<LivingEntity>();
-            targetLivingEntity.OnDeath += OnPlayerDeath; //That's how we subscribe a method to a System.Action method (OnDeath)
-        }
-
         mainCamera = Camera.main;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        playerT = target;
+        hasTarget = true;
+        targetLivingEntity = playerT.GetComponent<LivingEntity>();
+        targetLivingEntity.OnDeath += OnPlayerDeath; //That's how we subscribe a method to a System.Action method (OnDeath)
     }
 
     // Update is called once per frame
@@ -52,14 +53,14 @@ public class CameraController : MonoBehaviour
         if (hasTarget || editorMode)
         {
             transform.position = playerT.position + Vector3.up * verticalOffset + Vector3.back * horizontalOffset;
-            if (!editorMode && transform.position.z < mapBottomEdge.z)
+            /*if (!editorMode && transform.position.z < mapBottomEdge.z)
                 transform.position = new Vector3(transform.position.x, transform.position.y, mapBottomEdge.z);
             else if (!editorMode && transform.position.z > mapTopEdge.z)
                 transform.position = new Vector3(transform.position.x, transform.position.y, mapTopEdge.z);
             if (!editorMode && transform.position.x > mapRightEdge.x)
                 transform.position = new Vector3(mapRightEdge.x, transform.position.y, transform.position.z);
             else if (!editorMode && transform.position.x < mapLeftEdge.x)
-                transform.position = new Vector3(mapLeftEdge.x, transform.position.y, transform.position.z);
+                transform.position = new Vector3(mapLeftEdge.x, transform.position.y, transform.position.z);*/
         }
     }
 

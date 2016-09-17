@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour {
 
     public Player startPlayer;
     public Canvas canvas;
+    private WeaponManager weaponManager;
     public int currentWeaponAmmo
     {
         get
@@ -31,19 +32,18 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
     {
-        //Find map, player, and equip weapon
-        mapGen = FindObjectOfType<MapGenerator>().GetComponent<MapGenerator>();
-        Map map = mapGen.map;
-        currentPlayer = (Player) Instantiate(startPlayer, mapGen.CoordToPosition(map.mapSize.x / 2, 2), Quaternion.identity);
-        WeaponManager weaponManager = currentPlayer.transform.GetComponent<WeaponManager>();
-        playerCurrentWeapon = weaponManager.EquipWeapon(weaponManager.startingWeaponIndex);
-        //playerCurrentWeapon = weaponManager.allWeapons[weaponManager.startingWeaponIndex];
-
         //Set up UI
         canvas = FindObjectOfType<Canvas>();
         controllersUI = canvas.GetComponent<ControllersUI>();
         gameUI = canvas.GetComponent<GameUI>();
-        gameUI.SetWeaponImage(playerCurrentWeapon.UI_image);
+
+        //Find map, player, and equip weapon
+        mapGen = FindObjectOfType<MapGenerator>().GetComponent<MapGenerator>();
+        Map map = mapGen.map;
+        currentPlayer = (Player) Instantiate(startPlayer, mapGen.CoordToPosition(map.mapSize.x / 2, 2), Quaternion.identity);
+        weaponManager = currentPlayer.transform.GetComponent<WeaponManager>();
+        playerCurrentWeapon = weaponManager.EquipWeapon(weaponManager.startingWeaponIndex);
+        //playerCurrentWeapon = weaponManager.allWeapons[weaponManager.startingWeaponIndex];
 
         //Setup audio
         Transform audioManager = FindObjectOfType<AudioManager>().transform;
@@ -56,8 +56,14 @@ public class GameManager : MonoBehaviour {
         swipeDetect.aimJoystickRect = controllersUI.AimJoysticRect;
         swipeDetect.attackJoystickRect = controllersUI.AttackJoystickRect;
         swipeDetect.changeWeaponJoystickRect = controllersUI.ChangeWeaponRect;
-        FindObjectOfType<CameraController>().GetComponent<CameraController>().playerT = currentPlayer.transform;
+        Camera.main.GetComponent<CameraController>().SetTarget(currentPlayer.transform);
         
+    }
+
+    public void ChangeWeapon(Weapon weapon)//Used by the WeaponManager
+    {
+        playerCurrentWeapon = weapon;
+        gameUI.SetWeaponImage(playerCurrentWeapon.UI_image);
     }
 	
 }

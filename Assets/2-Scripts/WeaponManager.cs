@@ -32,6 +32,8 @@ public class WeaponManager : MonoBehaviour {
         equippedWeaponIndex = index;
         equippedWeapon.gameObject.SetActive(true);
 
+        GameManager.instance.ChangeWeapon(equippedWeapon);
+
         return equippedWeapon;
 	}
 
