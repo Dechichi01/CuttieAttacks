@@ -149,7 +149,7 @@ public class Enemy : LivingEntity {
 		currentState = State.Idle;
 	}
 
-    public void SetCharacteristics(float moveSpeed, int hitsToKillPlayer, float enemyHealth, Color skinColor)
+    public void SetCharacteristics(float moveSpeed, int hitsToKillPlayer, float enemyHealth)
     {
         navAgent.speed = moveSpeed;
         if (hasTarget)

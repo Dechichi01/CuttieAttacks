@@ -77,6 +77,7 @@ public class Spawner : MonoBehaviour
                 Vector3 spawnPos = mapGen.GetSpawnPositionInRect(quadrants[i], 1) + Vector3.up;
                 Transform enemyT = PoolManager.instance.ReuseObject(enemy.gameObject, spawnPos, Quaternion.Euler(0f, Random.Range(0f, 360f),0f)).transform;
                 enemyT.GetComponent<Enemy>().OnDeath += OnEnemyDeath;
+                enemyT.GetComponent<Enemy>().SetCharacteristics(currentWave.moveSpeed, currentWave.hitsToKillPlayer, currentWave.enemyHealth);
                 enemiesRemainingToSpawn--;
             }
         }
@@ -92,6 +93,7 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos = mapGen.GetSpawnPositionInRect(spawnRect) + Vector3.up;
         Vector3 startSpawnPos = spawnPos + Vector3.up * 20f;
         Transform enemyT = PoolManager.instance.ReuseObject(enemy.gameObject, startSpawnPos, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f)).transform;
+        enemyT.GetComponent<Enemy>().SetCharacteristics(currentWave.moveSpeed, currentWave.hitsToKillPlayer, currentWave.enemyHealth);
         Transform rope = ((Rope)Instantiate(enemyT.GetComponent<Enemy>().rope, startSpawnPos, Quaternion.identity)).transform;
 
         PandaBehaviour panda = enemyT.GetComponent<PandaBehaviour>();
