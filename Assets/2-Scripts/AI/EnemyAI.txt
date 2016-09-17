@@ -1,0 +1,17 @@
+tree("Root")
+	sequence
+		StartWatch()
+		repeat()
+			tree("Player")
+
+tree("Player")
+	sequence
+		mute 
+			sequence
+				playerInSight
+				not isChasing
+				StartChase()
+		mute 
+			while
+				canAttack
+				Attack()
