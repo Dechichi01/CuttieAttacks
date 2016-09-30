@@ -16,6 +16,7 @@ using System.Collections;
     }
 
     SwipeDirection sSwipeDirection = SwipeDirection.Null;
+    public RectTransform aimJoystickArea;
     public RectTransform aimJoystickRect;
     public RectTransform attackJoystickRect;
     public RectTransform changeWeaponJoystickRect;
@@ -25,8 +26,13 @@ using System.Collections;
 
     private Vector2 startPos;
     private float starTime;
-    private float touchTimeToShoot = 0.2f;
-    private bool isShooting = false;
+
+    private Vector3 aimRectInitialPos;
+
+    void Start()
+    {
+        aimRectInitialPos = aimJoystickRect.position;
+    }
 
     void Update()
     {
@@ -48,9 +54,12 @@ using System.Collections;
                         sSwipeDirection = SwipeDirection.ChangeWeapon;
                     break;
                 }             
-                else if (RectTransformUtility.RectangleContainsScreenPoint(aimJoystickRect, possibleTouch.position))
+                else if (RectTransformUtility.RectangleContainsScreenPoint(aimJoystickArea, possibleTouch.position))
                 {
                     touch = possibleTouch;
+                    float x = Mathf.Clamp(touch.position.x, aimRectInitialPos.x - aimJoystickRect.rect.width / 2, aimRectInitialPos.x + aimJoystickRect.rect.width / 2);
+                    float y = Mathf.Clamp(touch.position.y, aimRectInitialPos.y - aimJoystickRect.rect.height / 2, aimRectInitialPos.y + aimJoystickRect.rect.height / 2);
+                    aimJoystickRect.position = new Vector3(x, y, aimRectInitialPos.z);
                     break;
                 }
             }
