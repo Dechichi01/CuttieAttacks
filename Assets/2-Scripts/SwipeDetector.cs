@@ -37,6 +37,8 @@ using System.Collections;
     void Update()
     {
         //#if UNITY_ANDROID
+
+        aimJoystickRect.position = aimRectInitialPos;
         if (Input.touchCount > 0)
         {
             Touch touch = new Touch();
@@ -57,9 +59,12 @@ using System.Collections;
                 else if (RectTransformUtility.RectangleContainsScreenPoint(aimJoystickArea, possibleTouch.position))
                 {
                     touch = possibleTouch;
-                    float x = Mathf.Clamp(touch.position.x, aimRectInitialPos.x - aimJoystickRect.rect.width / 2, aimRectInitialPos.x + aimJoystickRect.rect.width / 2);
-                    float y = Mathf.Clamp(touch.position.y, aimRectInitialPos.y - aimJoystickRect.rect.height / 2, aimRectInitialPos.y + aimJoystickRect.rect.height / 2);
-                    aimJoystickRect.position = new Vector3(x, y, aimRectInitialPos.z);
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        float dX = touch.position.x - aimRectInitialPos.x;
+                        aimJoystickRect.position = Vector3.ClampMagnitude(new Vector3(dX, 0, 0), aimJoystickRect.rect.width*0.5f) + aimRectInitialPos;
+                    }
+
                     break;
                 }
             }
