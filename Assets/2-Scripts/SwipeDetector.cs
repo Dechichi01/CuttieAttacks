@@ -29,6 +29,8 @@ using System.Collections;
 
     private Vector3 aimRectInitialPos;
 
+    bool isAimTouch = false;
+
     void Start()
     {
         aimRectInitialPos = aimJoystickRect.position;
@@ -48,21 +50,29 @@ using System.Collections;
                 {
                     if (possibleTouch.phase == TouchPhase.Began)
                         sSwipeDirection = SwipeDirection.Attack;
+                    else
+                        touch = possibleTouch;
+
                     break;
                 }    
                 else if (RectTransformUtility.RectangleContainsScreenPoint(changeWeaponJoystickRect, possibleTouch.position))
                 {
                     if (possibleTouch.phase == TouchPhase.Began)
                         sSwipeDirection = SwipeDirection.ChangeWeapon;
+                    else
+                        touch = possibleTouch;
+
                     break;
                 }             
                 else if (RectTransformUtility.RectangleContainsScreenPoint(aimJoystickArea, possibleTouch.position))
                 {
                     touch = possibleTouch;
+                    isAimTouch = true;
                     if (touch.phase == TouchPhase.Moved)
                     {
                         float dX = touch.position.x - aimRectInitialPos.x;
-                        aimJoystickRect.position = Vector3.ClampMagnitude(new Vector3(dX, 0, 0), aimJoystickRect.rect.width*0.5f) + aimRectInitialPos;
+                        float dY = touch.position.y - aimRectInitialPos.y;
+                        aimJoystickRect.position = Vector3.ClampMagnitude(new Vector3(dX, dY, 0), aimJoystickRect.rect.width*0.3f) + aimRectInitialPos;
                     }
 
                     break;
@@ -75,6 +85,8 @@ using System.Collections;
                     starTime = Time.time;
                     break;
                 case TouchPhase.Ended:
+                    if (!isAimTouch) break;
+                    isAimTouch = false;
                     float swipeDistVertical = (new Vector3(0, touch.position.y, 0) - new Vector3(0, startPos.y, 0)).magnitude;
                     if (swipeDistVertical > minSwipeDistY)
                     {
