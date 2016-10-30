@@ -57,8 +57,9 @@ public class GameManager : MonoBehaviour {
         swipeDetect.aimJoystickRect = controllersUI.AimJoystickRect;
         swipeDetect.attackJoystickRect = controllersUI.AttackJoystickRect;
         swipeDetect.changeWeaponJoystickRect = controllersUI.ChangeWeaponRect;
-        Camera.main.GetComponent<CameraController>().SetTarget(currentPlayer.transform);
-        
+        //Camera.main.GetComponent<CameraController>().SetTarget(currentPlayer.transform);
+        Camera.main.GetComponent<CameraFollow>().SetTarget(currentPlayer.transform);
+
     }
 
     public void ChangeWeapon(Weapon weapon)//Used by the WeaponManager
