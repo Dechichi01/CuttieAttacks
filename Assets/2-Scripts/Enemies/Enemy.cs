@@ -12,7 +12,7 @@ public class Enemy : LivingEntity {
     /// </summary>
 
     [Task]
-    public bool playerInSight { get { return !isAttacking && !isFending && FOV.visibleTargets.Count > 0;   }    }
+    public bool playerInSight { get { return (!isPatrolEnemy) || (!isAttacking && !isFending && FOV.visibleTargets.Count > 0);   }    }
     //[Task]
     //public bool chasingPlayer { get { return isChasing; } }
     [Task]
@@ -59,11 +59,12 @@ public class Enemy : LivingEntity {
 	float nextAttackTime;
 	float myCollisionRadius;
 
-    bool hasTarget;
+    public bool hasTarget;
     bool isAttacking;
     bool isFending;
     [Task]
-    bool isChasing;
+    public bool isChasing;
+    public bool isPatrolEnemy = false;
 
     void Awake()
     {
@@ -159,6 +160,15 @@ public class Enemy : LivingEntity {
 
     }
 
+    protected override void Destroy(float delay = 0)
+    {
+        navAgent.enabled = false;
+        isChasing = false;
+        PandaBehaviour panda = GetComponent<PandaBehaviour>();
+        panda.Reset();
+        base.Destroy(delay);
+    }
+
     IEnumerator AttackPlayer(){
 
         isAttacking = true;
@@ -196,6 +206,7 @@ public class Enemy : LivingEntity {
     IEnumerator UpdatePath(){            
 
         while (hasTarget){
+            Debug.Log("Ocorrendo");
 			if (currentState == State.Chasing){
 				Vector3 dirToTarget = (playerTarget.thisTransform.position - transform.position).normalized;
 				Vector3 targetPosition = playerTarget.thisTransform.position - dirToTarget*(myCollisionRadius + playerTarget.radius/2 + attackDistanceThreshold/2);

@@ -26,6 +26,12 @@ public class LivingEntity : PoolObject, IDamageable {
 		}		
 	}
 
+    public override void OnObjectReuse()
+    {
+        dead = false;
+        base.OnObjectReuse();
+    }
+
     [ContextMenu("Self Destruct")]
 	public virtual void Die(){
 		dead = true;

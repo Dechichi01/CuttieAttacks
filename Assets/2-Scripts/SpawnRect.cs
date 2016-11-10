@@ -5,6 +5,7 @@ using System.Collections;
 public class SpawnRect {
 
     public Rect rect;
+    [SerializeField]
     private Transform owner;
     public void SetOwner(Transform transform) { owner = transform; }
 

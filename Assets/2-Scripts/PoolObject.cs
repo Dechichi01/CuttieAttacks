@@ -5,7 +5,7 @@ public class PoolObject : MonoBehaviour {
 
 	public virtual void OnObjectReuse()
     {
-
+        
     }
 
     protected virtual void Destroy(float delay = 0)

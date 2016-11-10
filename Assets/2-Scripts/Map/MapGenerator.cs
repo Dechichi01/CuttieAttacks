@@ -426,6 +426,8 @@ public class MapGenerator : Module
 
         SetSpawnPoints(bottomLeft.x, bottomRight.x, bottomLeft.y, topLeft.y, tileSize, overlapBoxDimension);
 
+        if (shuffledSpawnPoints.Count <= 0) return Vector3.one * -1;
+
         Coord spawnCoord = shuffledSpawnPoints.Dequeue();
         shuffledSpawnPoints.Enqueue(spawnCoord);
         return CoordToPosition(spawnCoord.x, spawnCoord.y);
@@ -438,6 +440,7 @@ public class MapGenerator : Module
             for (int y = initialY; y <= finalY; y += step)
                 if (Physics.OverlapBox(CoordToPosition(x, y), Vector3.one * overlapBoxDimension, Quaternion.identity, obstacleMask).Length == 0)
                     spawnPoints.Add(new Coord(x, y));
+                //else Debug.Log(Physics.OverlapBox(CoordToPosition(x, y), Vector3.one * overlapBoxDimension, Quaternion.identity, obstacleMask)[0].name);
 
         shuffledSpawnPoints = new Queue<Coord> (Utility.ShuffleArray<Coord>(spawnPoints.ToArray(), UnityEngine.Random.Range(0, 5000)));
     }
