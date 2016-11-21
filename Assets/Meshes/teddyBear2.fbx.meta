@@ -1,61 +1,69 @@
 fileFormatVersion: 2
-guid: 1d19a4875051e8b4096582b85b07184b
-timeCreated: 1477758922
+guid: 00d69a45c2791824e94260a337232192
+timeCreated: 1479685269
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Body_jnt
-    100002: Box001
-    100004: Foot_Left_jnt
-    100006: Foot_Left_jnt1
-    100008: Foot_Right_jnt
-    100010: Foot_Right_jnt1
-    100012: Hand_Left_jnt
-    100014: Hand_Right_jnt
-    100016: Hat_jnt
-    100018: Hat_jnt1
-    100020: Head_jnt
-    100022: Hips_jnt
-    100024: LowerArm_Left_jnt
-    100026: LowerArm_Right_jnt
-    100028: LowerLeg_Left_jnt
-    100030: LowerLeg_Right_jnt
-    100032: Root_jnt
-    100034: SimpleMilitary
-    100036: Spine_jnt
-    100038: //RootNode
-    100040: UpperArm_Left_jnt
-    100042: UpperArm_Right_jnt
-    100044: UpperLeg_Left_jnt
-    100046: UpperLeg_Right_jnt
+    100002: eyebrow_l
+    100004: eyebrow_r
+    100006: eyebrows
+    100008: Foot_Left_jnt
+    100010: Foot_Left_jnt1
+    100012: Foot_Right_jnt
+    100014: Foot_Right_jnt1
+    100016: Hand_Left_jnt
+    100018: Hand_Right_jnt
+    100020: Hat_jnt
+    100022: Hat_jnt1
+    100024: Head_jnt
+    100026: Hips_jnt
+    100028: LowerArm_Left_jnt
+    100030: LowerArm_Right_jnt
+    100032: LowerLeg_Left_jnt
+    100034: LowerLeg_Right_jnt
+    100036: Root_jnt
+    100038: Spine_jnt
+    100040: TeddyBear
+    100042: //RootNode
+    100044: UpperArm_Left_jnt
+    100046: UpperArm_Right_jnt
+    100048: UpperLeg_Left_jnt
+    100050: UpperLeg_Right_jnt
     400000: Body_jnt
-    400002: Box001
-    400004: Foot_Left_jnt
-    400006: Foot_Left_jnt1
-    400008: Foot_Right_jnt
-    400010: Foot_Right_jnt1
-    400012: Hand_Left_jnt
-    400014: Hand_Right_jnt
-    400016: Hat_jnt
-    400018: Hat_jnt1
-    400020: Head_jnt
-    400022: Hips_jnt
-    400024: LowerArm_Left_jnt
-    400026: LowerArm_Right_jnt
-    400028: LowerLeg_Left_jnt
-    400030: LowerLeg_Right_jnt
-    400032: Root_jnt
-    400034: SimpleMilitary
-    400036: Spine_jnt
-    400038: //RootNode
-    400040: UpperArm_Left_jnt
-    400042: UpperArm_Right_jnt
-    400044: UpperLeg_Left_jnt
-    400046: UpperLeg_Right_jnt
-    4300000: Box001
+    400002: eyebrow_l
+    400004: eyebrow_r
+    400006: eyebrows
+    400008: Foot_Left_jnt
+    400010: Foot_Left_jnt1
+    400012: Foot_Right_jnt
+    400014: Foot_Right_jnt1
+    400016: Hand_Left_jnt
+    400018: Hand_Right_jnt
+    400020: Hat_jnt
+    400022: Hat_jnt1
+    400024: Head_jnt
+    400026: Hips_jnt
+    400028: LowerArm_Left_jnt
+    400030: LowerArm_Right_jnt
+    400032: LowerLeg_Left_jnt
+    400034: LowerLeg_Right_jnt
+    400036: Root_jnt
+    400038: Spine_jnt
+    400040: TeddyBear
+    400042: //RootNode
+    400044: UpperArm_Left_jnt
+    400046: UpperArm_Right_jnt
+    400048: UpperLeg_Left_jnt
+    400050: UpperLeg_Right_jnt
+    4300000: TeddyBear
+    4300002: eyebrow_r
+    4300004: eyebrow_l
     9500000: //RootNode
-    13700000: Box001
+    13700000: eyebrow_l
+    13700002: eyebrow_r
+    13700004: TeddyBear
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,7 +71,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
